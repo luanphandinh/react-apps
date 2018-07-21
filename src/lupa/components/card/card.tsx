@@ -24,7 +24,9 @@ export class Card extends React.Component<CardProps, {}> {
     return (
         <div className="common-card-view">
           <div className="common-card-view--inner" onClick={() => this.props.onClickCard()}>
-            <div className="common-card-view--cover"></div>
+            <div className="common-card-view--cover"
+              style={{ backgroundImage: this.props.image ? `url('${this.props.image}')` : 'none' }}>
+            </div>
 
             <div className="common-card-view--content">
               {this.props.title && <div className="common-card-view--content-overview">{this.props.subtitle}</div>}

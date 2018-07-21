@@ -13,9 +13,10 @@ export class MovieCard extends React.Component<{ movie: Movie }, {}> {
   render() {
     return (
         <Card
+          image={this.props.movie.image}
           overview={this.props.movie.overview}
           title={this.props.movie.title}
-          subtitle={this.props.movie.subtitle}
+          subtitle={`★ ${this.props.movie.subtitle}`}
           onClickCard={() => this.onClickCard()}
         />
     );
