@@ -1,11 +1,17 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { Tictac } from './titac-app/titac.app';
+// import { Tictac } from './titac-app/titac.app';
+import { MovieApp } from './apps/movie-app/movie.app';
 
 // import './styles/app.scss';
 
+// ReactDOM.render(
+//   <Tictac />,
+//   document.getElementById('app'),
+// );
+
 ReactDOM.render(
-  <Tictac />,
-  document.getElementById('titac-app'),
+  <MovieApp />,
+  document.getElementById('app'),
 );
