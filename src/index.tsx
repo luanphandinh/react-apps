@@ -4,6 +4,8 @@ import * as ReactDOM from 'react-dom';
 // import { Tictac } from './titac-app/titac.app';
 import { MovieApp } from './apps/movie-app/movie.app';
 
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
 // import './styles/app.scss';
 
 // ReactDOM.render(

@@ -3,7 +3,8 @@
     "baseUrl": "./src",
     "paths": {
       "*": ["*"],
-      "app/*": ["app/*"],
+      "apps/*": ["apps/*"],
+      "lupa/*": ["lupa/*"],
     },
     "outDir": "./dist/",
     "sourceMap": true,
