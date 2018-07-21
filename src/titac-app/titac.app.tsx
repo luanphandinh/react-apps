@@ -3,7 +3,22 @@ import { Board } from './components/board';
 
 import './styles/titac-app.scss';
 
-export class Tictac extends React.Component<{}, {}> {
+export interface TicTacGameState {
+  history: any[];
+}
+export class Tictac extends React.Component<{}, TicTacGameState> {
+
+  constructor() {
+    super({});
+    this.state = {
+      history: [
+        {
+          square: Array(9).fill(null),
+        },
+      ],
+    };
+  }
+
   render() {
     return (
       <div className="game">
