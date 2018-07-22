@@ -4,6 +4,7 @@
     "paths": {
       "*": ["*"],
       "apps/*": ["apps/*"],
+      "movie-app/*": ["apps/movie-app/*"],
       "lupa/*": ["lupa/*"],
     },
     "outDir": "./dist/",
