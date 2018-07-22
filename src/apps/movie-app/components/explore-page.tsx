@@ -5,7 +5,7 @@ import * as InfiniteScroll from 'react-infinite-scroller';
 
 import { MovieGrid } from './movie-grid';
 import { Movie } from '../domains/movie';
-import { API_KEY } from '../domains/api';
+import { DEFAULT_FETCH_OPTION } from '../domains/api';
 
 interface ExplorePageState {
   movies: Movie[];
@@ -14,14 +14,7 @@ export class ExplorePage extends React.Component<{}, ExplorePageState> {
 
   movies: Movie[] = [];
   fetching: boolean;
-  fetchOptions = {
-    language: 'en-US',
-    sort_by: 'popularity.desc',
-    include_adult: false,
-    include_video: false,
-    page: 1,
-    api_key: API_KEY,
-  };
+  fetchOptions = DEFAULT_FETCH_OPTION;
 
   onClickCard() {
     alert('card clicked');

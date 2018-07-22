@@ -4,12 +4,7 @@ import { Card } from 'lupa/components/card/card';
 
 import { Movie } from '../domains/movie';
 
-export class MovieCard extends React.Component<{ movie: Movie }, {}> {
-
-  onClickCard() {
-    alert('card clicked');
-  }
-
+export class MovieCard extends React.Component<{ movie: Movie, onClick: Function }, {}> {
   render() {
     return (
         <Card
@@ -17,7 +12,7 @@ export class MovieCard extends React.Component<{ movie: Movie }, {}> {
           overview={this.props.movie.overview}
           title={this.props.movie.title}
           subtitle={`★ ${this.props.movie.subtitle}`}
-          onClickCard={() => this.onClickCard()}
+          onClickCard={() => this.props.onClick()}
         />
     );
   }

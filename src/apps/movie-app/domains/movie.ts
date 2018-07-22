@@ -73,7 +73,7 @@ export class Movie {
     return movie;
   }
 
-  getLogoStyle() {
+  getBannerStyle() {
     return DataFormatter.formatBackgroundStyle(this.posterPath);
   }
 
