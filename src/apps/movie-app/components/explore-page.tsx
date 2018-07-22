@@ -7,9 +7,13 @@ import { MovieGrid } from './movie-grid';
 import { Movie } from '../domains/movie';
 import { API_KEY } from '../domains/api';
 
-export class ExplorePage extends React.Component<{}, { movies: Movie[] }> {
+interface ExplorePageState {
+  movies: Movie[];
+}
+export class ExplorePage extends React.Component<{}, ExplorePageState> {
 
   movies: Movie[] = [];
+  fetching: boolean;
   fetchOptions = {
     language: 'en-US',
     sort_by: 'popularity.desc',
@@ -35,6 +39,10 @@ export class ExplorePage extends React.Component<{}, { movies: Movie[] }> {
   }
 
   fetchMovies() {
+    if (this.fetching) {
+      return;
+    }
+    this.fetching = true;
     const endpoint = 'https://api.themoviedb.org/3/discover/movie';
 
     HttpClient.getInstance().fetch(endpoint, this.fetchOptions)
@@ -49,6 +57,7 @@ export class ExplorePage extends React.Component<{}, { movies: Movie[] }> {
     });
     this.setState({ movies: [...this.movies] });
     this.fetchOptions.page += 1;
+    this.fetching = false;
   }
 
   render() {
