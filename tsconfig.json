@@ -11,8 +11,15 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "module": "commonjs",
+    "moduleResolution": "node",
     "target": "es6",
-    "jsx": "react"
+    "jsx": "react",
+    "types": [
+      "node",
+    ],
+    "typeRoots": [
+      "node_modules/@types/"
+    ]
   },
   "include": [
     "./src/**/*"
