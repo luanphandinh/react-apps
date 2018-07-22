@@ -1,16 +1,19 @@
 import * as React from 'react';
 
 import { HttpClient } from 'lupa/utils/http-client';
+import { RouteComponentProps, Link } from 'react-router-dom';
 
 import { Movie } from '../domains/movie';
 import { API_KEY } from '../domains/api';
 
 import '../styles/movie-detail.scss';
 
+interface MovieDetailPageProps extends RouteComponentProps<any>, React.Props<any> { }
+
 interface MovieDetailState {
   movie: Movie;
 }
-export class MovieDetail extends React.Component<{ match: any }, MovieDetailState> {
+export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDetailState> {
 
   fetching: boolean;
   fetchOptions = {
@@ -79,7 +82,9 @@ export class MovieDetail extends React.Component<{ match: any }, MovieDetailStat
     );
   }
 
-  renderMovieContent(movie: Movie) {
+  renderMovieContent() {
+    const { match } = this.props;
+    const { movie } = this.state;
     if (!movie) {
       return;
     }
@@ -88,10 +93,13 @@ export class MovieDetail extends React.Component<{ match: any }, MovieDetailStat
       <div className="movie-header" style={movie.getBackdropImageStyle()}>
         <div className="custom_bg">
           <div className="container">
-            <a className="header-link has-cursor">
-              <i className="fa fa-chevron-left" aria-hidden="true"></i>
-              <span>Back to search results</span>
-            </a>
+            <Link to={'/explore'}>
+              <a className="header-link has-cursor">
+                <i className="fa fa-chevron-left" aria-hidden="true"></i>
+                <span>Back to search results</span>
+              </a>
+            </Link>
+
             <div className="row">
               <div className="col-md-4">
                 <div className="card has-cursor">
@@ -112,6 +120,6 @@ export class MovieDetail extends React.Component<{ match: any }, MovieDetailStat
 
   render() {
     const movie = this.state.movie;
-    return <div className="movie-detail-page">{this.renderMovieContent(movie)}</div>;
+    return <div className="movie-detail-page">{this.renderMovieContent()}</div>;
   }
 }

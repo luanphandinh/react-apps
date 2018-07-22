@@ -1,16 +1,18 @@
 import * as React from 'react';
 
 import { HttpClient } from 'lupa/utils/http-client';
+import { RouteComponentProps } from 'react-router-dom';
 import * as InfiniteScroll from 'react-infinite-scroller';
 
 import { MovieGrid } from './movie-grid';
 import { Movie } from '../domains/movie';
 import { DEFAULT_FETCH_OPTION } from '../domains/api';
 
+interface ExplorePageProps extends RouteComponentProps<any>, React.Props<any> { }
 interface ExplorePageState {
   movies: Movie[];
 }
-export class ExplorePage extends React.Component<{}, ExplorePageState> {
+export class ExplorePage extends React.Component<ExplorePageProps, ExplorePageState> {
 
   movies: Movie[] = [];
   fetching: boolean;
@@ -29,6 +31,10 @@ export class ExplorePage extends React.Component<{}, ExplorePageState> {
 
   componentDidMount() {
     this.fetchMovies();
+  }
+
+  componentWillUnmount() {
+    this.fetchOptions.page = 1;
   }
 
   fetchMovies() {
@@ -61,7 +67,7 @@ export class ExplorePage extends React.Component<{}, ExplorePageState> {
         hasMore={true || false}
         loader={<div className="loader" key={0}>Loading ...</div>}
       >
-        <MovieGrid movies={this.state.movies}/>;
+        <MovieGrid movies={this.state.movies} history={this.props.history}/>;
       </InfiniteScroll>
     );
   }

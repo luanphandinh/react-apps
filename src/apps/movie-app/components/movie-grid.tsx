@@ -8,7 +8,7 @@ export class MovieGrid extends React.Component<{ movies: Movie[], history?: any 
 
   onClickItem(id: number) {
     console.log('click grid item');
-    // this.props.history.push(`/movie/${id}`);
+    this.props.history.push(`/detail/${id}`);
   }
 
   renderGrid() {
