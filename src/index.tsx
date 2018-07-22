@@ -5,7 +5,7 @@ import * as ReactDOM from 'react-dom';
 import { MovieApp } from './apps/movie-app/movie.app';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'font-awesome/css/font-awesome.min.css';
+import 'font-awesome/css/font-awesome.min.css';
 
 // import './styles/app.scss';
 
