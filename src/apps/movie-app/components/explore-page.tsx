@@ -59,6 +59,10 @@ export class ExplorePage extends React.Component<ExplorePageProps, ExplorePageSt
     this.fetching = false;
   }
 
+  onClickItem(id: number) {
+    this.props.history.push(`/detail/${id}`);
+  }
+
   render() {
     return (
       <InfiniteScroll
@@ -67,7 +71,7 @@ export class ExplorePage extends React.Component<ExplorePageProps, ExplorePageSt
         hasMore={true || false}
         loader={<div className="loader" key={0}>Loading ...</div>}
       >
-        <MovieGrid movies={this.state.movies} history={this.props.history}/>;
+        <MovieGrid movies={this.state.movies} onClickItem={(id: number) => this.onClickItem(id)}/>;
       </InfiniteScroll>
     );
   }
