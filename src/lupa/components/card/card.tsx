@@ -22,20 +22,20 @@ export class Card extends React.Component<CardProps, {}> {
 
   render() {
     return (
-        <div className="common-card-view">
-          <div className="common-card-view--inner" onClick={() => this.props.onClickCard()}>
-            <div className="common-card-view--cover"
+        <div className="lpcard">
+          <div className="lpcard__inner" onClick={() => this.props.onClickCard()}>
+            <div className="lpcard__cover"
               style={{ backgroundImage: this.props.image ? `url('${this.props.image}')` : 'none' }}>
             </div>
 
-            <div className="common-card-view--content">
-              {this.props.title && <div className="common-card-view--content-overview">{this.props.subtitle}</div>}
+            <div className="lpcard__content">
+              {this.props.title && <div className="lpcard__content-overview">{this.props.subtitle}</div>}
 
-              {this.props.subtitle && <div className="common-card-view--content-title">{this.props.title}</div>}
+              {this.props.subtitle && <div className="lpcard__content-title">{this.props.title}</div>}
 
-              {this.props.overview && <div className="common-card-view--content-author">{this.props.overview}</div>}
+              {this.props.overview && <div className="lpcard__content-author">{this.props.overview}</div>}
 
-              {this.props.supportingText && <div className="common-card-view--content-text">{this.props.supportingText}</div>}
+              {this.props.supportingText && <div className="lpcard__content-text">{this.props.supportingText}</div>}
             </div>
           </div>
         </div>

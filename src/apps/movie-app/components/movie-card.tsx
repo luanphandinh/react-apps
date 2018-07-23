@@ -4,6 +4,7 @@ import { Card } from 'lupa/components/card/card';
 
 import { Movie } from '../domains/movie';
 
+import '../styles/movie-card.scss';
 export class MovieCard extends React.Component<{ movie: Movie, onClick: Function }, {}> {
   render() {
     return (

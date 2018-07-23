@@ -1,0 +1,13 @@
+@media (min-width: 1280px) {
+  .movie-card {
+    .lpcard {
+      &__inner {
+        height: 510px;
+      }
+
+      &__cover {
+        flex-basis: 346px;
+      }
+    }
+  }
+}
