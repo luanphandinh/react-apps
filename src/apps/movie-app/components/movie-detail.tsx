@@ -4,6 +4,7 @@ import { HttpClient } from 'lupa/utils/http-client';
 import { RouteComponentProps, Link } from 'react-router-dom';
 
 import { Movie } from '../domains/movie';
+import { Genre } from '../domains/genre';
 import { API_KEY } from '../domains/api';
 
 import '../styles/movie-detail.scss';
@@ -82,6 +83,20 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
     );
   }
 
+  renderGenres(movie: Movie) {
+    if (!movie.genres) {
+      return;
+    }
+
+    const genres = movie.genres.map((genre: Genre) => <span className="genre text-grey" key={genre.id}>{genre.name}</span>);
+    return (
+      <div>
+        <div className="about">Genres</div>
+        {genres}
+      </div>
+    );
+  }
+
   renderMovieContent() {
     const { match } = this.props;
     const { movie } = this.state;
@@ -110,6 +125,7 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
                 {this.renderTitle(movie)}
                 {this.renderPlayTrailerButton(movie)}
                 {this.renderMovieOverview(movie)}
+                {this.renderGenres(movie)}
               </div>
             </div>
           </div>
