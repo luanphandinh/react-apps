@@ -55,7 +55,7 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
       return;
     }
     return (
-      <div className="header-title">
+      <div className="header__content-title">
         {movie.title}
         <span className="text-md ml-2">Relase date : {movie.releaseDate}</span>
       </div>
@@ -64,7 +64,7 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
 
   renderPlayTrailerButton(movie: Movie) {
     return (
-      <div className="play-trailer text-grey has-cursor">
+      <div className="header__content-btn-play has-cursor">
         <i className="fa fa-play fa-1x text-grey" aria-hidden="true"></i>
         <span className="text-grey text-bold">Watch trailer</span>
       </div>
@@ -77,7 +77,7 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
     }
     return (
       <div>
-        <div className="about">Overview</div>
+        <div className="header__content-about">Overview</div>
         <div className="text-md">{this.state.movie.overview}</div>
       </div>
     );
@@ -91,7 +91,7 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
     const genres = movie.genres.map((genre: Genre) => <span className="genre text-grey" key={genre.id}>{genre.name}</span>);
     return (
       <div>
-        <div className="about">Genres</div>
+        <div className="header__content-about">Genres</div>
         {genres}
       </div>
     );
@@ -105,23 +105,23 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
     }
 
     return (
-      <div className="movie-header" style={movie.getBackdropImageStyle()}>
-        <div className="custom_bg">
+      <div className="header" style={movie.getBackdropImageStyle()}>
+        <div className="header__custom_bg">
           <div className="container">
             <Link to={'/explore'}>
-              <a className="header-link has-cursor">
+              <a className="header__link has-cursor">
                 <i className="fa fa-chevron-left" aria-hidden="true"></i>
                 <span>Back to search results</span>
               </a>
             </Link>
 
-            <div className="row">
-              <div className="col-md-4">
-                <div className="card has-cursor">
-                  <div className="card-cover" style={movie.getBannerStyle()}></div>
+            <div className="row header__wrapper">
+              <div className="col-md-6 col-lg-4">
+                <div className="header__card has-cursor">
+                  <div className="header__card-cover" style={movie.getBannerStyle()}></div>
                 </div>
               </div>
-              <div className="col-md-8 movie-content">
+              <div className="col-md-6 col-lg-8 header__content">
                 {this.renderTitle(movie)}
                 {this.renderPlayTrailerButton(movie)}
                 {this.renderMovieOverview(movie)}
