@@ -88,7 +88,7 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
       return;
     }
 
-    const genres = movie.genres.map((genre: Genre) => <span className="genre text-grey" key={genre.id}>{genre.name}</span>);
+    const genres = movie.genres.map((genre: Genre) => <span className="header__genre text-grey" key={genre.id}>{genre.name}</span>);
     return (
       <div>
         <div className="header__content-about">Genres</div>
@@ -97,7 +97,7 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
     );
   }
 
-  renderMovieContent() {
+  rendeHeaderContent() {
     const { match } = this.props;
     const { movie } = this.state;
     if (!movie) {
@@ -105,7 +105,7 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
     }
 
     return (
-      <div className="header" style={movie.getBackdropImageStyle()}>
+      <div className="header text-white" style={movie.getBackdropImageStyle()}>
         <div className="header__custom_bg">
           <div className="container">
             <Link to={'/explore'}>
@@ -136,6 +136,10 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
 
   render() {
     const movie = this.state.movie;
-    return <div className="movie-detail-page">{this.renderMovieContent()}</div>;
+    return (
+      <div className="movie-detail-page">
+        {this.rendeHeaderContent()}
+      </div>
+    );
   }
 }
