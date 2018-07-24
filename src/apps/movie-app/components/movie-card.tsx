@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Card } from 'lupa/components/card/card';
+import { Card } from 'lupa/components/card';
 
 import { Movie } from '../domains/movie';
 

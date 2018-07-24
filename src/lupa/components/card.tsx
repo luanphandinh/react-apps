@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import './card.scss';
+import '../css/card.scss';
 
 export interface CardProps {
   image?: string;
