@@ -4,7 +4,7 @@ import { HttpClient } from 'lupa/utils/http-client';
 import { RouteComponentProps } from 'react-router-dom';
 import * as InfiniteScroll from 'react-infinite-scroller';
 
-import { MovieGrid } from './movie-grid';
+import { MovieGrid } from '../components/movie-grid';
 import { Movie } from '../domains/movie';
 import { DEFAULT_FETCH_OPTION } from '../domains/api';
 

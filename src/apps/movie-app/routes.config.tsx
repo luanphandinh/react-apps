@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Route } from 'react-router-dom';
 
-import { MovieDetail } from './components/movie-detail';
-import { ExplorePage } from './components/explore-page';
+import { MovieDetail } from './pages/movie-detail';
+import { ExplorePage } from './pages/explore-page';
 
 export const APP_ROUTES = [
   {
