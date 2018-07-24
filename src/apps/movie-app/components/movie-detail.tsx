@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { HttpClient } from 'lupa/utils/http-client';
+import { LupaNavbar } from 'lupa/components/navbar';
 import { RouteComponentProps, Link } from 'react-router-dom';
 
 import { Movie } from '../domains/movie';
@@ -134,11 +135,23 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
     );
   }
 
+  renderNavbar() {
+    const navItems = [
+      { text: 'Review' },
+      { text: 'Trailers' },
+      { text: 'Gallery' },
+      { text: 'Actors' },
+    ];
+
+    return <LupaNavbar items={navItems} selectItem={ (id: number): void => null }/>;
+  }
+
   render() {
     const movie = this.state.movie;
     return (
       <div className="movie-detail-page">
         {this.rendeHeaderContent()}
+        {this.renderNavbar()}
       </div>
     );
   }
