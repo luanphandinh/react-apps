@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import '../css/navbar.scss';
 import { Navbar, NavItem, Nav } from 'react-bootstrap';
 
 export interface NavbarItem {
