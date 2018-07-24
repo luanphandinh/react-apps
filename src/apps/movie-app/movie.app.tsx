@@ -1,21 +1,14 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import { ExplorePage } from './components/explore-page';
-import { MovieDetail } from './components/movie-detail';
+import { APP_ROUTES, RouteWithSubRoutes } from './routes.config';
 
 export class MovieApp extends React.Component<{}, {}> {
   render() {
     return (
       <Router>
         <div>
-          <Route
-            exact
-            path="/"
-            render={() => <Redirect to="/explore" />}
-          />
-          <Route path="/explore" component={ExplorePage} />
-          <Route path="/detail/:id" component={MovieDetail} />
+          {APP_ROUTES.map((route, i) => <RouteWithSubRoutes key={i} route={{ ...route }} />)}
         </div>
       </Router>
     );

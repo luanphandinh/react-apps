@@ -143,7 +143,7 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
       { text: 'Actors' },
     ];
 
-    return <LupaNavbar items={navItems} selectItem={ (id: number): void => null }/>;
+    return <LupaNavbar items={navItems} selectItem={(id: number): void => null} />;
   }
 
   render() {
