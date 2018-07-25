@@ -2,11 +2,8 @@ import * as React from 'react';
 
 import { Navbar, NavItem, Nav } from 'react-bootstrap';
 
-export interface NavbarItem {
-  text: string;
-}
 export interface NavbarProps {
-  items: NavbarItem[];
+  items: any[];
   selectItem: Function;
 }
 
@@ -26,12 +23,13 @@ export class LupaNavbar extends React.Component<NavbarProps, { selectedId: numbe
   renderNavItem() {
     const { items } = this.props;
     const { selectedId } = this.state;
-    const navItems = items.map((item: NavbarItem, index: number) =>
+    const navItems = items.map((item: any, index: number) =>
         <NavItem
+          key={index}
           eventKey={index}
           onClick={() => this.onSelectItem(index)}
           className={index === selectedId ? 'active--bold-green' : ''}>
-          {item.text}
+          {item}
         </NavItem>,
       );
     return navItems;

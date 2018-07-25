@@ -16,8 +16,6 @@ interface MovieDetailState {
   movie: Movie;
 }
 export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDetailState> {
-
-  fetching: boolean;
   fetchOptions = {
     api_key: API_KEY,
   };
@@ -30,14 +28,12 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
   }
 
   componentDidMount() {
-    this.fetchMovie();
+    if (!this.state.movie) {
+      this.fetchMovie();
+    }
   }
 
   fetchMovie() {
-    if (this.fetching) {
-      return;
-    }
-    this.fetching = true;
     const endpoint = `https://api.themoviedb.org/3/movie/${this.props.match.params.id}`;
 
     HttpClient.getInstance().fetch(endpoint, this.fetchOptions)
@@ -48,7 +44,6 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
   onFetchMovieDone(data: any) {
     const movie = Movie.createMovieDetailFromResponse(data);
     this.setState({ movie });
-    this.fetching = false;
   }
 
   renderTitle(movie: Movie) {
@@ -110,10 +105,10 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
         <div className="header__custom_bg">
           <div className="container">
             <Link to={'/explore'}>
-              <a className="header__link has-cursor">
+              <span className="header__link has-cursor">
                 <i className="fa fa-chevron-left" aria-hidden="true"></i>
                 <span>Back to search results</span>
-              </a>
+              </span>
             </Link>
 
             <div className="row header__wrapper">
@@ -136,12 +131,18 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
   }
 
   renderNavbar() {
-    const navItems = [
-      { text: 'Review' },
-      { text: 'Trailers' },
-      { text: 'Gallery' },
-      { text: 'Actors' },
+    if (!this.state.movie) {
+      return;
+    }
+
+    const items = [
+      'Review',
+      'Trailers',
+      'Gallery',
+      'Actors',
     ];
+
+    const navItems = items.map((item: string) => <span>{item}</span>);
 
     return <LupaNavbar items={navItems} selectItem={(id: number): void => null} />;
   }
