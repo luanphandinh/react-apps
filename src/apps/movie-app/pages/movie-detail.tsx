@@ -98,7 +98,7 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
     );
   }
 
-  rendeHeaderContent() {
+  renderHeaderContent() {
     const { match } = this.props;
     const { movie } = this.state;
     if (!movie) {
@@ -150,7 +150,7 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
     const movie = this.state.movie;
     return (
       <div className="movie-detail-page">
-        {this.rendeHeaderContent()}
+        {this.renderHeaderContent()}
         {this.renderNavbar()}
       </div>
     );
