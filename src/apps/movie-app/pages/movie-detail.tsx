@@ -7,10 +7,13 @@ import { RouteComponentProps, Link } from 'react-router-dom';
 import { Movie } from '../domains/movie';
 import { Genre } from '../domains/genre';
 import { API_KEY } from '../domains/api';
+import { RouteWithSubRoutes } from '../routes.config';
 
 import '../styles/movie-detail.scss';
 
-interface MovieDetailPageProps extends RouteComponentProps<any>, React.Props<any> { }
+interface MovieDetailPageProps extends RouteComponentProps<any>, React.Props<any> {
+  routes?: any;
+}
 
 interface MovieDetailState {
   movie: Movie;
@@ -147,12 +150,21 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
     return <LupaNavbar items={navItems} selectItem={(id: number): void => null} />;
   }
 
+  renderChilds() {
+    const { routes } = this.props;
+    if (!routes) {
+      return;
+    }
+    return <div>{routes.map((route: any, i: number) => <RouteWithSubRoutes key={i} route={{ ...route }} />)}</div>;
+  }
+
   render() {
     const movie = this.state.movie;
     return (
       <div className="movie-detail-page">
         {this.renderHeaderContent()}
         {this.renderNavbar()}
+        {this.renderChilds()}
       </div>
     );
   }

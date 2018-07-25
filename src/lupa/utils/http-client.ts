@@ -8,9 +8,12 @@ export class HttpClient {
     return this.instance;
   }
 
-  fetch(url: string, queryParams: any): Promise<any> {
-    const encodeParams = this.obj2UrlParams(queryParams);
-    const fetchUrl = `${url}?${encodeParams}`;
+  fetch(url: string, queryParams?: any): Promise<any> {
+    let fetchUrl = url;
+    if (queryParams) {
+      const encodeParams = this.obj2UrlParams(queryParams);
+      fetchUrl = `${url}?${encodeParams}`;
+    }
 
     return fetch(fetchUrl)
       .then(response => response.json())

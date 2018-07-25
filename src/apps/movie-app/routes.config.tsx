@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 import { MovieDetail } from './pages/movie-detail';
 import { ExplorePage } from './pages/explore-page';
+import { ReviewPage } from './pages/review-page';
 
 export const APP_ROUTES = [
   {
@@ -12,6 +13,12 @@ export const APP_ROUTES = [
   {
     path: '/detail/:id',
     component: MovieDetail,
+    routes: [
+      {
+        path: '/detail/:id/reviews',
+        component: ReviewPage,
+      },
+    ],
   },
 ];
 
