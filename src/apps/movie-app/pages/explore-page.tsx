@@ -4,8 +4,9 @@ import { HttpClient } from 'lupa/utils/http-client';
 import { RouteComponentProps } from 'react-router-dom';
 import * as InfiniteScroll from 'react-infinite-scroller';
 
-import { MovieGrid } from '../components/movie-grid';
+import { Grid } from 'lupa/components/grid';
 import { Movie } from '../domains/movie';
+import { MovieCard } from '../components/movie-card';
 import { DEFAULT_FETCH_OPTION } from '../domains/api';
 
 interface ExplorePageProps extends RouteComponentProps<any>, React.Props<any> { }
@@ -63,6 +64,14 @@ export class ExplorePage extends React.Component<ExplorePageProps, ExplorePageSt
     this.props.history.push(`/detail/${id}`);
   }
 
+  renderGrid() {
+    const { movies } = this.state;
+    const moviesCard = movies
+      .map((movie: Movie) => <MovieCard key={movie.id} movie={movie} onClick={() => this.onClickItem(movie.id)}/>);
+
+    return <div className="container"><Grid items={moviesCard}/></div>;
+  }
+
   render() {
     return (
       <InfiniteScroll
@@ -71,7 +80,7 @@ export class ExplorePage extends React.Component<ExplorePageProps, ExplorePageSt
         hasMore={true || false}
         loader={<div className="loader" key={0}>Loading ...</div>}
       >
-        <MovieGrid movies={this.state.movies} onClickItem={(id: number) => this.onClickItem(id)}/>;
+        {this.renderGrid()}
       </InfiniteScroll>
     );
   }
