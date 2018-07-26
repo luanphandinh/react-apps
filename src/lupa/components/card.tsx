@@ -3,12 +3,12 @@ import * as React from 'react';
 import '../css/card.scss';
 
 export interface CardProps {
-  image?: string;
-  overview?: string;
-  title?: string;
-  subtitle?: string;
-  supportingText?: any;
-  cardObject?: any;
+  readonly image?: string;
+  readonly overview?: string;
+  readonly title?: string;
+  readonly subtitle?: string;
+  readonly supportingText?: any;
+  readonly cardObject?: any;
   isHover?: boolean;
 
   onClickCard: Function;
