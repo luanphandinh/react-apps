@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as ReactMarkdown from 'react-markdown';
 
 import '../styles/review-card.scss';
 
@@ -17,8 +18,10 @@ export class ReviewCard extends React.Component<ReviewProps, {}> {
           <div className="review__avatar has-cursor round">{avatar}</div>
         </div>
         <div className="review__content">
-          <div className="text-md text-black text-bold has-cursor mb-2 p-t-10 p-b-10">A review by {author}</div>
-          <div className="text-md p-t-10 p-b-10 text-black">{content}</div>
+          <div className="text-md text-black mb-2 p-t-10 p-b-10">
+            A review by<span className="text-bold has-cursor"> {author}</span>
+          </div>
+          <div className="text-md p-t-10 p-b-10 text-black"><ReactMarkdown source={content} /></div>
         </div>
       </div>
     );
