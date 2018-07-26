@@ -61,7 +61,7 @@ export class ExplorePage extends React.Component<ExplorePageProps, ExplorePageSt
   }
 
   onClickItem(id: number) {
-    this.props.history.push(`/detail/${id}`);
+    this.props.history.push(`/detail/${id}/reviews`);
   }
 
   renderGrid() {

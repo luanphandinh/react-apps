@@ -22,9 +22,11 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
   fetchOptions = {
     api_key: API_KEY,
   };
+  id: number;
 
   constructor(props: any) {
     super(props);
+    this.id = this.props.match.params.id;
     this.state = {
       movie: null,
     };
@@ -37,7 +39,7 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
   }
 
   fetchMovie() {
-    const endpoint = `https://api.themoviedb.org/3/movie/${this.props.match.params.id}`;
+    const endpoint = `https://api.themoviedb.org/3/movie/${this.id}`;
 
     HttpClient.getInstance().fetch(endpoint, this.fetchOptions)
       .then((data: any) => this.onFetchMovieDone(data))
@@ -97,7 +99,6 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
   }
 
   renderHeaderContent() {
-    const { match } = this.props;
     const { movie } = this.state;
     if (!movie) {
       return;
@@ -139,18 +140,24 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
     }
 
     const items = [
-      'Review',
-      'Trailers',
-      'Gallery',
-      'Actors',
+      { text: 'Review', path: `/detail/${this.id}/reviews` },
+      { text: 'Trailers', path: `/detail/${this.id}/trailers` },
+      { text: 'Gallery', path: `/detail/${this.id}/gallery` },
+      { text: 'Actors', path: `/detail/${this.id}/actors` },
     ];
 
-    const navItems = items.map((item: string) => <span>{item}</span>);
+    const navItems = items
+      .map((item: any) => (
+        <span
+          onClick={() => this.props.history.push(item.path) }>
+          {item.text}
+        </span>
+      ));
 
-    return <LupaNavbar items={navItems} selectItem={(id: number): void => null} />;
+    return <LupaNavbar items={navItems} />;
   }
 
-  renderChilds() {
+  renderChildRoutes() {
     const { routes } = this.props;
     if (!routes) {
       return;
@@ -159,12 +166,11 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
   }
 
   render() {
-    const movie = this.state.movie;
     return (
       <div className="movie-detail-page">
         {this.renderHeaderContent()}
         {this.renderNavbar()}
-        {this.renderChilds()}
+        {this.renderChildRoutes()}
       </div>
     );
   }

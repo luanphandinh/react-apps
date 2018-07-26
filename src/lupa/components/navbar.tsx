@@ -4,7 +4,6 @@ import { Navbar, NavItem, Nav } from 'react-bootstrap';
 
 export interface NavbarProps {
   items: any[];
-  selectItem: Function;
 }
 
 export class LupaNavbar extends React.Component<NavbarProps, { selectedId: number }> {
@@ -16,7 +15,6 @@ export class LupaNavbar extends React.Component<NavbarProps, { selectedId: numbe
   }
 
   onSelectItem(selectedId: number) {
-    this.props.selectItem(selectedId);
     this.setState({ selectedId });
   }
 
@@ -24,14 +22,13 @@ export class LupaNavbar extends React.Component<NavbarProps, { selectedId: numbe
     const { items } = this.props;
     const { selectedId } = this.state;
     const navItems = items.map((item: any, index: number) =>
-        <NavItem
-          key={index}
-          eventKey={index}
-          onClick={() => this.onSelectItem(index)}
-          className={index === selectedId ? 'active--bold-green' : ''}>
-          {item}
-        </NavItem>,
-      );
+      <NavItem
+        key={index}
+        eventKey={index}
+        className={index === selectedId ? 'active--bold-green' : ''}>
+        {item}
+      </NavItem>,
+    );
     return navItems;
   }
 

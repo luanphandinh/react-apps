@@ -40,10 +40,6 @@ export class ReviewPage extends React.Component<ReviewPageProps, ExplorePageStat
     this.setState({ reviews: [...reviews] });
   }
 
-  onClickItem(id: number) {
-    this.props.history.push(`/detail/${id}`);
-  }
-
   renderReviews() {
     const { reviews } = this.state;
     if (!reviews) {
@@ -54,15 +50,14 @@ export class ReviewPage extends React.Component<ReviewPageProps, ExplorePageStat
         key={index}
         avatar={review.getAuthorAvatar()}
         content={review.content}
-        author={review.author}
-      />);
+        author={review.author}/>);
 
     return reviewsCard;
   }
 
   render() {
     return (
-      <div className="row">
+      <div className="container">
         {this.renderReviews()}
       </div>
     );
