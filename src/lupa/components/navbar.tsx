@@ -4,13 +4,14 @@ import { Navbar, NavItem, Nav } from 'react-bootstrap';
 
 export interface NavbarProps {
   items: any[];
+  at: number;
 }
 
 export class LupaNavbar extends React.Component<NavbarProps, { selectedId: number }> {
   constructor(props: NavbarProps) {
     super(props);
     this.state = {
-      selectedId: 0,
+      selectedId: this.props.at,
     };
   }
 
@@ -25,6 +26,7 @@ export class LupaNavbar extends React.Component<NavbarProps, { selectedId: numbe
       <NavItem
         key={index}
         eventKey={index}
+        onClick={() => this.onSelectItem(index)}
         className={index === selectedId ? 'active--bold-green' : ''}>
         {item}
       </NavItem>,

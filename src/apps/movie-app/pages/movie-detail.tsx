@@ -146,15 +146,22 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
       { text: 'Actors', path: `/detail/${this.id}/actors` },
     ];
 
+    const pathName: string = this.props.location.pathname;
+    let selectedItem: number = 0;
     const navItems = items
-      .map((item: any) => (
-        <span
-          onClick={() => this.props.history.push(item.path) }>
-          {item.text}
-        </span>
-      ));
+      .map((item: any, index: number) => {
+        if (item.path === pathName) {
+          selectedItem = index;
+        }
+        return (
+          <span
+            onClick={() => this.props.history.push(item.path) }>
+            {item.text}
+          </span>
+        );
+      });
 
-    return <LupaNavbar items={navItems} />;
+    return <LupaNavbar items={navItems} at={selectedItem}/>;
   }
 
   renderChildRoutes() {
