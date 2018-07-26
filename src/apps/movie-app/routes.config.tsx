@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 import { MovieDetail } from './pages/movie-detail';
 import { ExplorePage } from './pages/explore-page';
@@ -20,6 +20,11 @@ export const APP_ROUTES = [
       },
     ],
   },
+  {
+    exact: true,
+    path: '/',
+    component: () => <Redirect to="/explore"/>,
+  },
 ];
 
 export class RouteWithSubRoutes extends React.Component<{ route: any }, {}> {
@@ -27,6 +32,7 @@ export class RouteWithSubRoutes extends React.Component<{ route: any }, {}> {
     const { route } = this.props;
     return (
       <Route
+        exact={route.exact}
         path={route.path}
         render={props => (
           // pass the sub-routes down to keep nesting
