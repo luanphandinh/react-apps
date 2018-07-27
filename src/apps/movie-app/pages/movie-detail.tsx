@@ -155,7 +155,7 @@ export class MovieDetail extends React.Component<MovieDetailPageProps, MovieDeta
         }
         return (
           <span
-            onClick={() => this.props.history.push(item.path) }>
+            onClick={ () => this.props.history.push(item.path) }>
             {item.text}
           </span>
         );
